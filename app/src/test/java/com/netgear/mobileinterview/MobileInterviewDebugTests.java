@@ -96,7 +96,9 @@ public class MobileInterviewDebugTests {
 
             if (lineItem != null) {
                 lineItem.discount = 20;
-                assertEquals(90, order.getTotal());   // 3
+
+                //Order total should be 90
+                assertEquals(90, order.getTotal());   // 4
                 order.updateOrderItem(lineItem0, 9, 20);
                 assertEquals(72, order.getTotal());
             }
@@ -105,7 +107,7 @@ public class MobileInterviewDebugTests {
             assertEquals(168, order.getTotal());
 
             int lineItem2 = order.addOrderItem(purchasable2.itemId, 1, 105);
-            assertEquals(268, order.getTotal()); // 5
+            assertEquals(268, order.getTotal()); // 3
 
             int lineItem3 = order.addOrderItem(purchasable0.itemId, 2, 0);
             assertEquals(278, order.getTotal());  // 6
@@ -175,7 +177,7 @@ public class MobileInterviewDebugTests {
 
             purchasable0.price = 10;
             PurchasableItem purchasable = PurchasableItems.getInstance().getPurchasableSku(purchasable0.sku);
-            assertEquals(100, purchasable.price); // 4
+            assertEquals(100, purchasable.price); // 5
 
             purchasable = PurchasableItems.getInstance().updatePurchasable("XYZ-0", null, 10, 0);
             assertEquals(10, purchasable.price);
