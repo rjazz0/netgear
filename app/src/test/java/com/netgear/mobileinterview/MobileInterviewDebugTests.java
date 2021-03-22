@@ -84,7 +84,7 @@ public class MobileInterviewDebugTests {
     @Test
     public void testOrder() {
         try {
-            PurchasableItem purchasable0 = PurchasableItems.getInstance().createPurchasable("XYZ-0", "Item A", 10, 10);
+            PurchasableItem purchasable0 = PurchasableItems.getInstance().createPurchasable("XYZ-0", "Item A", 10, 11);
             PurchasableItem purchasable1 = PurchasableItems.getInstance().createPurchasable("XYZ-1", "Item B", 11, 10);
             PurchasableItem purchasable2 = PurchasableItems.getInstance().createPurchasable("XYZ-2", "Item C", 100, 10);
 
@@ -110,7 +110,9 @@ public class MobileInterviewDebugTests {
             assertEquals(268, order.getTotal()); // 3
 
             int lineItem3 = order.addOrderItem(purchasable0.itemId, 2, 0);
+            PurchasableItems.getInstance().updatePurchasable(purchasable0.sku, purchasable0.price, 10);
             assertEquals(278, order.getTotal());  // 6
+
         } catch (Exception e) {
             e.printStackTrace();
             assert false;
@@ -179,7 +181,7 @@ public class MobileInterviewDebugTests {
             PurchasableItem purchasable = PurchasableItems.getInstance().getPurchasableSku(purchasable0.sku);
             assertEquals(100, purchasable.price); // 5
 
-            purchasable = PurchasableItems.getInstance().updatePurchasable("XYZ-0", null, 10, 0);
+            purchasable = PurchasableItems.getInstance().updatePurchasable("XYZ-0", 10, 10);
             assertEquals(10, purchasable.price);
 
             PurchasableItem existing0 = PurchasableItems.getInstance().getPurchasable(purchasable0.itemId);

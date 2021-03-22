@@ -34,10 +34,10 @@ public class PurchasableItems {
         return null;
     }
 
-    public PurchasableItem updatePurchasable(String sku, String description, int price, int stock) throws Exception {
+    public PurchasableItem updatePurchasable(String sku, int price, int stock) throws Exception {
         PurchasableItem purchasableItem = getPurchasableSku(sku);
         if (purchasableItem != null) {
-            purchasableItem.description = description;
+            purchasableItem.stock = stock;
             purchasableItem.price = price;
             purchasables.put(purchasableItem.itemId, purchasableItem);
         } else {
