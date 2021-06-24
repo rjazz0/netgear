@@ -17,7 +17,7 @@ public class PurchasableItems {
         String uuid = UUID.randomUUID().toString();
         PurchasableItem item = new PurchasableItem(uuid, sku, description, price, stock);
         purchasables.put(item.itemId, item);
-        return item;
+        return new PurchasableItem(uuid, sku, description, price, stock);
     }
 
     public PurchasableItem getPurchasable(String itemId) {

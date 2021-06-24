@@ -10,6 +10,10 @@ public class OrderItem {
         this.id = id;
         this.itemId = itemId;
         this.quantity = quantity;
-        this.discount = discount;
+        if (discount > 100) {
+            this.discount = 0;
+        } else {
+            this.discount = discount;
+        }
     }
 }

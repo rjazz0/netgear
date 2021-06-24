@@ -12,8 +12,16 @@ public class PurchasableItem {
         this.itemId = itemId;
         this.sku = sku;
         this.description = description;
-        this.price = price;
-        this.stock = stock;
+        if (price < 0) {
+            this.price = 0;
+        } else {
+            this.price = price;
+        }
+        if (stock < 0) {
+            this.stock = 0;
+        } else {
+            this.stock = stock;
+        }
     }
 
 }

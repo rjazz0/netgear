@@ -19,7 +19,16 @@ public class Order {
         // Adding items to Order
         int orderItemId = nLIId;
 
-        OrderItem item = new OrderItem(orderItemId, itemId, quantity, discount);
+        PurchasableItem purchasableItem = PurchasableItems.getInstance().getPurchasable(itemId);
+        int stock = purchasableItem.stock;
+        int newQuantity = quantity;
+        if (stock < quantity) {
+            newQuantity = quantity - stock;
+        } else {
+            purchasableItem.stock -= quantity;
+        }
+
+        OrderItem item = new OrderItem(orderItemId, itemId, newQuantity, discount);
         nLIId++;
         items.put(orderItemId, item);
 
@@ -27,7 +36,12 @@ public class Order {
     }
 
     public OrderItem getOrderItem(int orderItemId) {
-        return items.get(orderItemId);
+        OrderItem item = new OrderItem(
+                items.get(orderItemId).id,
+                items.get(orderItemId).itemId,
+                items.get(orderItemId).quantity,
+                items.get(orderItemId).discount);
+        return item;
     }
 
     public void removeOrderItem(int orderItemId) {
